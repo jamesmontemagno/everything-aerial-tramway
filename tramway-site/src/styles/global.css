@@ -1,0 +1,154 @@
+:root {
+	--sand: #f4efe2;
+	--sky: #6aa9d7;
+	--steel: #466074;
+	--ink: #1e2d38;
+	--signal: #bd6a2b;
+	--pine: #2f5a45;
+	--panel: #fffdfa;
+	--font-display: 'Atkinson', 'Trebuchet MS', sans-serif;
+	--font-body: 'Atkinson', 'Segoe UI', sans-serif;
+}
+@font-face {
+	font-family: "Atkinson";
+	src: url("/fonts/atkinson-regular.woff") format("woff");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Atkinson";
+	src: url("/fonts/atkinson-bold.woff") format("woff");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+body {
+	font-family: var(--font-body);
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	background:
+		radial-gradient(circle at 15% -10%, color-mix(in srgb, var(--sky) 48%, white 52%), transparent 42%),
+		radial-gradient(circle at 100% 20%, color-mix(in srgb, var(--signal) 28%, white 72%), transparent 35%),
+		linear-gradient(180deg, var(--sand) 0%, #faf8f1 50%, #f5f0e4 100%);
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	color: var(--ink);
+	font-size: 18px;
+	line-height: 1.6;
+}
+main {
+	width: min(1100px, 92vw);
+	margin: 0 auto;
+	padding: 2rem 0 3rem;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	color: var(--ink);
+	line-height: 1.12;
+	font-family: var(--font-display);
+}
+h1 {
+	font-size: clamp(2.2rem, 5vw, 4.3rem);
+}
+h2 {
+	font-size: clamp(1.6rem, 2.8vw, 2.5rem);
+}
+h3 {
+	font-size: clamp(1.2rem, 2vw, 1.55rem);
+}
+h4 {
+	font-size: 1.2rem;
+}
+h5 {
+	font-size: 1.05rem;
+}
+strong,
+b {
+	font-weight: 700;
+}
+a {
+	color: var(--ink);
+}
+a:hover {
+	color: color-mix(in srgb, var(--ink) 70%, var(--signal) 30%);
+}
+p {
+	margin: 0;
+}
+img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 18px;
+}
+code {
+	padding: 0.12rem 0.34rem;
+	background: color-mix(in srgb, var(--sky) 16%, white 84%);
+	border-radius: 0.25rem;
+	font-size: 0.95em;
+}
+pre {
+	padding: 1rem;
+	border-radius: 1rem;
+	background: #1c2831;
+	color: #f4f7fa;
+}
+pre > code {
+	all: unset;
+}
+blockquote {
+	border-left: 4px solid var(--signal);
+	padding: 0.2rem 0 0.2rem 0.85rem;
+	margin: 0.8rem 0;
+}
+hr {
+	border: none;
+	border-top: 1px solid color-mix(in srgb, var(--steel) 32%, transparent);
+}
+@media (max-width: 720px) {
+	main {
+		padding: 1.25rem 0 2rem;
+	}
+}
+
+.sr-only {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+	clip: rect(1px 1px 1px 1px);
+	/* maybe deprecated but we need to support legacy browsers */
+	clip: rect(1px, 1px, 1px, 1px);
+	/* modern browsers, clip-path works inwards from each corner */
+	clip-path: inset(50%);
+	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
+	white-space: nowrap;
+}
+
+.panel {
+	background: color-mix(in srgb, var(--panel) 90%, white 10%);
+	border: 1px solid color-mix(in srgb, var(--steel) 18%, transparent);
+	border-radius: 1rem;
+	box-shadow: 0 10px 30px rgba(28, 38, 48, 0.08);
+}
+
+.pill {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.25rem 0.65rem;
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--sky) 20%, white 80%);
+	font-size: 0.85rem;
+	font-weight: 700;
+	letter-spacing: 0.01em;
+}

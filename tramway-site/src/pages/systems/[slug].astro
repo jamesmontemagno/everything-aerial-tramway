@@ -1,0 +1,176 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+
+export async function getStaticPaths() {
+  const systems = await getCollection('systems');
+  return systems.map((system) => ({
+    params: { slug: system.id },
+    props: { system },
+  }));
+}
+
+const { system } = Astro.props as { system: CollectionEntry<'systems'> };
+
+const typeLabel: Record<string, string> = {
+  aerial_tramway: 'Aerial tramway',
+  gondola_lift: 'Gondola lift',
+  funicular: 'Funicular',
+};
+
+const purposeLabel: Record<string, string> = {
+  scenic_destination: 'Scenic destination',
+  commuter_transit: 'Commuter transit',
+  mixed_use: 'Mixed use',
+};
+---
+
+<SiteLayout title={`${system.data.officialName} | Aerial Atlas`} description={(system.body ?? '').slice(0, 150)}>
+  <article class="detail">
+    <a class="back" href="/systems">Back to systems</a>
+
+    <header class="hero panel">
+      <div>
+        <p class="pill">{typeLabel[system.data.systemType]}</p>
+        <h1>{system.data.officialName}</h1>
+        <p class="meta">{system.data.cityOrRegion}, {system.data.country} • Opened {system.data.openedYear}</p>
+      </div>
+      <aside class="hero-stat panel">
+        <p class="label">Signature stat</p>
+        <p class="value">{system.data.heroStat}</p>
+      </aside>
+    </header>
+
+    <section class="metrics panel">
+      <article>
+        <h2>Ride profile</h2>
+        <ul>
+          <li>Trip duration: {system.data.rideDurationMin} minutes</li>
+          <li>Capacity per cabin: {system.data.capacityPerCabin ?? 'N/A'}</li>
+          <li>Line length: {system.data.lineLengthM ?? 'N/A'} m</li>
+          <li>Vertical rise: {system.data.verticalRiseM ?? 'N/A'} m</li>
+        </ul>
+      </article>
+      <article>
+        <h2>Operations</h2>
+        <ul>
+          <li>Purpose: {purposeLabel[system.data.purpose]}</li>
+          <li>Departure model: {system.data.departureModel}</li>
+          <li>Weather sensitivity: {system.data.weatherSensitivity}</li>
+          <li>Operator: {system.data.operator}</li>
+        </ul>
+      </article>
+      <article>
+        <h2>Accessibility</h2>
+        <p>{system.data.accessibilitySummary}</p>
+        <div class="tag-row">
+          {system.data.tags.map((tag) => (
+            <span class="pill">{tag.replaceAll('-', ' ')}</span>
+          ))}
+        </div>
+      </article>
+    </section>
+
+    <section class="story panel">
+      <h2>Why enthusiasts care</h2>
+      <div class="prose">
+        <p>{system.body}</p>
+      </div>
+    </section>
+  </article>
+</SiteLayout>
+
+<style>
+  .detail {
+    display: grid;
+    gap: 1rem;
+  }
+  .back {
+    display: inline-flex;
+    width: fit-content;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 0.32rem 0.7rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--sky) 16%, white 84%);
+  }
+  .hero {
+    padding: 1.2rem;
+    display: grid;
+    grid-template-columns: 1fr minmax(220px, 300px);
+    gap: 1rem;
+    align-items: start;
+  }
+  .hero h1 {
+    margin-top: 0.5rem;
+    max-width: 16ch;
+  }
+  .meta {
+    margin-top: 0.6rem;
+    color: var(--steel);
+  }
+  .hero-stat {
+    padding: 0.95rem;
+  }
+  .label {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--steel);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .value {
+    margin-top: 0.45rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .metrics {
+    padding: 1.2rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+  .metrics article {
+    background: color-mix(in srgb, var(--sky) 6%, white 94%);
+    border: 1px solid color-mix(in srgb, var(--steel) 16%, transparent);
+    border-radius: 0.8rem;
+    padding: 0.8rem;
+  }
+  .metrics h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  .metrics ul {
+    margin: 0;
+    padding-left: 1rem;
+    display: grid;
+    gap: 0.4rem;
+    font-size: 0.95rem;
+  }
+  .tag-row {
+    margin-top: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .story {
+    padding: 1.2rem;
+  }
+  .story h2 {
+    margin-bottom: 0.8rem;
+  }
+  .prose {
+    display: grid;
+    gap: 0.7rem;
+  }
+  @media (max-width: 860px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+    .metrics {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+

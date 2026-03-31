@@ -1,0 +1,215 @@
+---
+import { getCollection } from 'astro:content';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+
+const systems = (await getCollection('systems')).sort((a, b) =>
+  a.data.officialName.localeCompare(b.data.officialName),
+);
+
+const typeLabel: Record<string, string> = {
+  aerial_tramway: 'Aerial tramway',
+  gondola_lift: 'Gondola lift',
+  funicular: 'Funicular',
+};
+
+const purposeLabel: Record<string, string> = {
+  scenic_destination: 'Scenic destination',
+  commuter_transit: 'Commuter transit',
+  mixed_use: 'Mixed use',
+};
+---
+
+<SiteLayout
+  title="System Directory | Aerial Atlas"
+  description="Search and filter aerial tramways, gondolas, and funiculars by type, purpose, and geography."
+>
+  <section class="directory-hero panel">
+    <p class="pill">Directory</p>
+    <h1>Explore systems by type, purpose, and place</h1>
+    <p>
+      This launch version uses a curated seed set with strict classification so users can search broad terms while
+      still seeing technically correct transport types.
+    </p>
+  </section>
+
+  <section class="controls panel">
+    <div class="field wide">
+      <label for="q">Search</label>
+      <input id="q" type="search" placeholder="Palm Springs, gondola, commuter, rotating..." />
+    </div>
+    <div class="field">
+      <label for="type">Type</label>
+      <select id="type">
+        <option value="">All</option>
+        <option value="aerial_tramway">Aerial tramway</option>
+        <option value="gondola_lift">Gondola lift</option>
+        <option value="funicular">Funicular</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="purpose">Purpose</label>
+      <select id="purpose">
+        <option value="">All</option>
+        <option value="scenic_destination">Scenic destination</option>
+        <option value="commuter_transit">Commuter transit</option>
+        <option value="mixed_use">Mixed use</option>
+      </select>
+    </div>
+  </section>
+
+  <section id="cards" class="cards">
+    {systems.map((system) => (
+      <article
+        class="card panel"
+        data-name={system.data.officialName.toLowerCase()}
+        data-location={system.data.cityOrRegion.toLowerCase()}
+        data-type={system.data.systemType}
+        data-purpose={system.data.purpose}
+        data-tags={system.data.tags.join(' ').toLowerCase()}
+      >
+        <p class="pill">{typeLabel[system.data.systemType]}</p>
+        <h2><a href={`/systems/${system.id}/`}>{system.data.officialName}</a></h2>
+        <p class="meta">
+          {system.data.cityOrRegion}, {system.data.country} • Opened {system.data.openedYear}
+        </p>
+        <p>{(system.body ?? '').slice(0, 180)}...</p>
+        <div class="stats">
+          <span>{system.data.rideDurationMin} min ride</span>
+          {system.data.capacityPerCabin && <span>{system.data.capacityPerCabin} riders/cabin</span>}
+          <span>{purposeLabel[system.data.purpose]}</span>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <p id="result-count" class="result-count">Showing {systems.length} systems</p>
+</SiteLayout>
+
+<script>
+  const q = document.getElementById('q');
+  const type = document.getElementById('type');
+  const purpose = document.getElementById('purpose');
+  const cards = [...document.querySelectorAll('.card')];
+  const resultCount = document.getElementById('result-count');
+
+  const applyFilters = () => {
+    const query = q instanceof HTMLInputElement ? q.value.toLowerCase().trim() : '';
+    const activeType = type && 'value' in type ? type.value : '';
+    const activePurpose = purpose && 'value' in purpose ? purpose.value : '';
+
+    let visible = 0;
+    cards.forEach((cardNode) => {
+      const card = cardNode as HTMLElement;
+      const inText = `${card.dataset.name} ${card.dataset.location} ${card.dataset.tags}`;
+      const matchesText = !query || inText.includes(query);
+      const matchesType = !activeType || card.dataset.type === activeType;
+      const matchesPurpose = !activePurpose || card.dataset.purpose === activePurpose;
+      const show = matchesText && matchesType && matchesPurpose;
+      card.classList.toggle('hidden', !show);
+      if (show) visible += 1;
+    });
+
+    if (resultCount) {
+      resultCount.textContent = `Showing ${visible} system${visible === 1 ? '' : 's'}`;
+    }
+  };
+
+  [q, type, purpose].forEach((el) => {
+    if (el) el.addEventListener('input', applyFilters);
+    if (el) el.addEventListener('change', applyFilters);
+  });
+</script>
+
+<style>
+  .directory-hero,
+  .controls {
+    padding: 1.4rem;
+  }
+  .directory-hero p {
+    max-width: 70ch;
+    margin-top: 0.8rem;
+  }
+  .controls {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.8rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .field {
+    display: grid;
+    gap: 0.4rem;
+  }
+  .field.wide {
+    grid-column: span 3;
+  }
+  label {
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--steel);
+  }
+  input,
+  select {
+    border-radius: 0.7rem;
+    border: 1px solid color-mix(in srgb, var(--steel) 25%, white 75%);
+    background: white;
+    padding: 0.72rem 0.8rem;
+    font: inherit;
+    color: var(--ink);
+  }
+  .cards {
+    margin-top: 1.1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  .card {
+    padding: 1rem;
+    display: grid;
+    gap: 0.7rem;
+  }
+  .card h2 {
+    font-size: 1.2rem;
+  }
+  .card h2 a {
+    text-decoration: none;
+  }
+  .card h2 a:hover {
+    text-decoration: underline;
+  }
+  .meta {
+    font-size: 0.92rem;
+    color: var(--steel);
+  }
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .stats span {
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 1px solid color-mix(in srgb, var(--sky) 28%, white 72%);
+    border-radius: 999px;
+    padding: 0.2rem 0.55rem;
+  }
+  .result-count {
+    margin-top: 0.8rem;
+    color: var(--steel);
+    font-weight: 700;
+  }
+  .hidden {
+    display: none;
+  }
+  @media (max-width: 760px) {
+    .controls {
+      grid-template-columns: 1fr;
+    }
+    .field.wide {
+      grid-column: auto;
+    }
+  }
+</style>
+
+

@@ -1,0 +1,86 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+---
+
+<SiteLayout title="Taxonomy and Scope | Aerial Atlas" description="How Aerial Atlas classifies cable transport systems.">
+	<section class="panel page-head">
+		<p class="pill">Methodology</p>
+		<h1>Clear taxonomy beats vague cable car labels.</h1>
+		<p>
+			People search with broad language, but strong discovery needs technical precision. Aerial Atlas stores strict
+			types while still supporting ambiguous terms in search.
+		</p>
+	</section>
+
+	<section class="grid">
+		<article class="panel item">
+			<h2>Aerial tramway</h2>
+			<p>Cabins shuttle back and forth on fixed support cables with a separate haul rope.</p>
+			<p class="meta">Best for scenic spans, dramatic climbs, and iconic two-cabin experiences.</p>
+		</article>
+		<article class="panel item">
+			<h2>Gondola lift</h2>
+			<p>Small cabins circulate continuously on a moving cable, usually with higher frequency.</p>
+			<p class="meta">Best for network-style movement and urban backbone coverage.</p>
+		</article>
+		<article class="panel item">
+			<h2>Funicular</h2>
+			<p>Rail-based cars on a steep slope are cable-connected and counterbalanced.</p>
+			<p class="meta">Best treated as a related but separate branch of cable transport.</p>
+		</article>
+	</section>
+
+	<section class="panel principles">
+		<h2>Build principles</h2>
+		<ul>
+			<li>Separate scenic rides from commuter systems so recommendations match intent.</li>
+			<li>Prioritize operational fields like weather sensitivity and departure model.</li>
+			<li>Treat accessibility as structured data, not a single yes or no flag.</li>
+			<li>Pair practical planning with history, engineering, and fun facts.</li>
+		</ul>
+	</section>
+</SiteLayout>
+
+<style>
+	.page-head {
+		padding: 1.3rem;
+		display: grid;
+		gap: 0.7rem;
+	}
+	.page-head p {
+		max-width: 70ch;
+	}
+	.grid {
+		margin-top: 1rem;
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.85rem;
+	}
+	.item {
+		padding: 1rem;
+		display: grid;
+		gap: 0.6rem;
+	}
+	.item h2 {
+		font-size: 1.3rem;
+	}
+	.meta {
+		font-size: 0.92rem;
+		color: var(--steel);
+	}
+	.principles {
+		margin-top: 1rem;
+		padding: 1.2rem;
+	}
+	.principles ul {
+		margin: 0.6rem 0 0;
+		padding-left: 1rem;
+		display: grid;
+		gap: 0.5rem;
+	}
+	@media (max-width: 900px) {
+		.grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

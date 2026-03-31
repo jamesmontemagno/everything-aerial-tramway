@@ -1,0 +1,30 @@
+---
+const today = new Date();
+---
+
+<footer>
+	<div class="shell">
+		<p>Aerial Atlas is an independent field guide for cable transport enthusiasts.</p>
+		<p class="meta">&copy; {today.getFullYear()} Aerial Atlas. Built for curious riders and transport nerds.</p>
+	</div>
+</footer>
+<style>
+	footer {
+		padding: 3rem 0 4.5rem;
+		border-top: 1px solid color-mix(in srgb, var(--steel) 28%, transparent);
+		background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--sky) 14%, white 86%));
+	}
+	.shell {
+		width: min(1100px, 92vw);
+		margin: 0 auto;
+	}
+	p {
+		margin: 0;
+		color: var(--ink);
+	}
+	.meta {
+		margin-top: 0.5rem;
+		font-size: 0.9rem;
+		color: var(--steel);
+	}
+</style>

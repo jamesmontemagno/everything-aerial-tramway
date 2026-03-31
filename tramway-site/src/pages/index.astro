@@ -1,0 +1,173 @@
+---
+import { getCollection } from 'astro:content';
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const systems = await getCollection('systems');
+const featured = systems.filter((item) => item.data.featured).slice(0, 6);
+const typeCounts = systems.reduce(
+	(acc, item) => {
+		acc[item.data.systemType] += 1;
+		return acc;
+	},
+	{ aerial_tramway: 0, gondola_lift: 0, funicular: 0 },
+);
+---
+
+<SiteLayout>
+	<section class="hero panel">
+		<p class="pill">Aerial tramways and cable transport</p>
+		<h1>History, stats, and ride intelligence for people obsessed with cable systems.</h1>
+		<p>
+			Aerial Atlas is built for enthusiasts and serious trip planners. Explore landmark tramways,
+			commuter systems, and adjacent cable technologies through one strict taxonomy.
+		</p>
+		<div class="hero-actions">
+			<a href="/systems" class="cta">Explore systems</a>
+			<a href="/about" class="secondary">Learn taxonomy</a>
+		</div>
+	</section>
+
+	<section class="overview">
+		<article class="panel">
+			<p class="label">Catalog types</p>
+			<p class="value">{typeCounts.aerial_tramway} tramways • {typeCounts.gondola_lift} gondolas • {typeCounts.funicular} funiculars</p>
+		</article>
+		<article class="panel">
+			<p class="label">Current coverage</p>
+			<p class="value">{systems.length} curated systems with launch-ready fields</p>
+		</article>
+		<article class="panel">
+			<p class="label">Discovery focus</p>
+			<p class="value">Search + filters + rankings for enthusiasts and planners</p>
+		</article>
+	</section>
+
+	<section class="feature-header">
+		<h2>Featured systems</h2>
+		<a href="/systems">See full directory</a>
+	</section>
+
+	<section class="featured-grid">
+		{featured.map((item) => (
+			<article class="panel card">
+				<p class="pill">{item.data.systemType.replace('_', ' ')}</p>
+				<h3><a href={`/systems/${item.id}/`}>{item.data.officialName}</a></h3>
+				<p class="meta">{item.data.cityOrRegion}, {item.data.country}</p>
+				<p>{item.data.heroStat}</p>
+			</article>
+		))}
+	</section>
+
+	<section class="spotlight panel">
+		<h2>What this site is optimizing for</h2>
+		<ul>
+			<li>Technical clarity: no mixing of aerial tramways, gondolas, and funiculars.</li>
+			<li>Practical visit context: duration, weather sensitivity, dispatch, and accessibility.</li>
+			<li>Story depth: engineering milestones, cultural relevance, and historical context.</li>
+		</ul>
+	</section>
+</SiteLayout>
+
+<style>
+	.hero {
+		padding: 2rem;
+		display: grid;
+		gap: 1rem;
+	}
+	.hero p {
+		max-width: 70ch;
+	}
+	.hero-actions {
+		display: flex;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+	}
+	.hero-actions a {
+		text-decoration: none;
+		font-weight: 700;
+		padding: 0.55rem 0.95rem;
+		border-radius: 0.7rem;
+	}
+	.cta {
+		background: linear-gradient(130deg, var(--signal), color-mix(in srgb, var(--signal) 58%, var(--steel) 42%));
+		color: #fff;
+	}
+	.secondary {
+		border: 1px solid color-mix(in srgb, var(--steel) 35%, transparent);
+		background: color-mix(in srgb, var(--sky) 12%, white 88%);
+	}
+	.overview {
+		display: grid;
+		gap: 0.9rem;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		margin-top: 1rem;
+	}
+	.overview article {
+		padding: 1rem;
+	}
+	.label {
+		font-size: 0.84rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--steel);
+		font-weight: 700;
+	}
+	.value {
+		margin-top: 0.5rem;
+		font-size: 1.05rem;
+		font-weight: 700;
+	}
+	.feature-header {
+		margin-top: 1.4rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+	}
+	.feature-header a {
+		font-weight: 700;
+	}
+	.featured-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 0.9rem;
+		margin-top: 0.7rem;
+	}
+	.card {
+		padding: 1rem;
+		display: grid;
+		gap: 0.65rem;
+	}
+	.card h3 {
+		font-size: 1.2rem;
+	}
+	.card h3 a {
+		text-decoration: none;
+	}
+	.card h3 a:hover {
+		text-decoration: underline;
+	}
+	.meta {
+		font-size: 0.92rem;
+		color: var(--steel);
+	}
+	.spotlight {
+		margin-top: 1.3rem;
+		padding: 1.2rem;
+	}
+	.spotlight h2 {
+		margin-bottom: 0.7rem;
+	}
+	.spotlight ul {
+		margin: 0;
+		padding-left: 1rem;
+		display: grid;
+		gap: 0.5rem;
+	}
+	@media (max-width: 900px) {
+		.overview {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+
