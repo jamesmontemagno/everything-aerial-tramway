@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aerial Tramways: 400 Years of Going Up</title>
+  <meta
+    name="description"
+    content="A simple, story-driven website about the history of aerial tramways, from 1644 ropeways to modern urban icons."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="#top">Tramway Story</a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="#what">What is it?</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#fun">Why fun?</a>
+        <a href="#today">Today</a>
+        <a href="#sources">Sources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Central Oregon-friendly history, minus the homework vibe</p>
+          <h1>Aerial Tramways:<br>400 Years of Going Up</h1>
+          <p class="lede">
+            From dirt-moving buckets in 1644 to iconic city rides and mountain viewpoints,
+            aerial tramways have always been about one irresistible idea: finding a memorable
+            way over difficult ground.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#timeline">Ride the timeline</a>
+            <a class="button secondary" href="AERIAL_TRAMWAYS_RESEARCH.md">Read the full research</a>
+          </div>
+          <ul class="hero-stats" aria-label="Quick highlights">
+            <li><strong>1644</strong><span>First well-documented ropeway in Gdansk</span></li>
+            <li><strong>1907</strong><span>Passenger era gets real in Monte Ulia</span></li>
+            <li><strong>1976</strong><span>Urban comeback in New York City</span></li>
+          </ul>
+        </div>
+
+        <aside class="hero-card" aria-label="Why people remember tramways">
+          <div class="cable-line"></div>
+          <div class="cabin">TRAM</div>
+          <h2>Why they stick with people</h2>
+          <p>
+            A tramway is rare infrastructure: practical enough to solve a real problem,
+            dramatic enough to feel like an experience, and scenic enough to make people say,
+            “Wait, that was actually awesome.”
+          </p>
+          <p class="mini-note">Think transportation, viewpoint, and story — all in one ride.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="what">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Start here</p>
+          <h2>What exactly is an aerial tramway?</h2>
+          <p>
+            An aerial tramway usually has one or two big cabins that shuttle back and forth on
+            fixed support cables, pulled by a moving haul rope. That is different from a gondola,
+            where many smaller cabins circulate continuously.
+          </p>
+        </div>
+
+        <div class="compare-grid">
+          <article class="compare-card compare-card--tram">
+            <h3>Aerial tramway</h3>
+            <ul>
+              <li>Usually one or two larger cabins</li>
+              <li>Moves in a reversible shuttle</li>
+              <li>Great for steep climbs and dramatic spans</li>
+              <li>Feels more like a big reveal ride</li>
+            </ul>
+          </article>
+          <article class="compare-card compare-card--gondola">
+            <h3>Gondola lift</h3>
+            <ul>
+              <li>Many smaller cabins</li>
+              <li>Moves continuously around a loop</li>
+              <li>Better for steady passenger flow</li>
+              <li>Common in ski areas and urban networks</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="timeline">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">The big story</p>
+          <h2>A quick timeline of tramway history</h2>
+          <p>
+            Click a year to jump to the milestone. The story starts with construction and mining,
+            then shifts into passenger travel, tourism, and modern city life.
+          </p>
+        </div>
+
+        <div class="timeline-jumps" role="tablist" aria-label="Timeline milestones">
+          <button class="jump-chip active" data-target="milestone-1644" type="button">1644</button>
+          <button class="jump-chip" data-target="milestone-1872" type="button">1872</button>
+          <button class="jump-chip" data-target="milestone-1907" type="button">1907</button>
+          <button class="jump-chip" data-target="milestone-1908" type="button">1908</button>
+          <button class="jump-chip" data-target="milestone-1976" type="button">1976</button>
+          <button class="jump-chip" data-target="milestone-2004" type="button">2004-2007</button>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-card active" id="milestone-1644" data-year="1644">
+            <p class="timeline-year">1644</p>
+            <h3>Adam Wybe builds an early ropeway in Gdansk</h3>
+            <p>
+              The best-documented early example used a loop of rope and suspended buckets to move
+              soil for city fortifications. It is widely treated as the first operational aerial
+              ropeway of this recognizable type.
+            </p>
+            <p class="source-line">Source: GAMEO / Adam Wybe</p>
+          </article>
+
+          <article class="timeline-card" id="milestone-1872" data-year="1872">
+            <p class="timeline-year">1872</p>
+            <h3>Bleichert makes ropeways far more practical</h3>
+            <p>
+              Adolf Bleichert's bicable system separated carrying and hauling functions, which made
+              ropeways stronger, more scalable, and far better suited for serious industrial work.
+            </p>
+            <p class="source-line">Source: Hoist; Bleichert company history</p>
+          </article>
+
+          <article class="timeline-card" id="milestone-1907" data-year="1907">
+            <p class="timeline-year">1907</p>
+            <h3>Passenger tramways stop being a wild idea</h3>
+            <p>
+              Leonardo Torres Quevedo's Monte Ulia tramway in Spain is remembered as an early public
+              passenger milestone, with safety-conscious multi-cable engineering built into the design.
+            </p>
+            <p class="source-line">Source: Museo Torres Quevedo</p>
+          </article>
+
+          <article class="timeline-card" id="milestone-1908" data-year="1908">
+            <p class="timeline-year">1908</p>
+            <h3>Central Europe joins the passenger era</h3>
+            <p>
+              The Kohlernbahn in Bozen showed ropeways were moving beyond freight and into everyday
+              passenger use, helping launch the broader era of mountain sightseeing and resort travel.
+            </p>
+            <p class="source-line">Source: LEITNER ropeway history</p>
+          </article>
+
+          <article class="timeline-card" id="milestone-1976" data-year="1976">
+            <p class="timeline-year">1976</p>
+            <h3>Roosevelt Island proves an urban tramway can work</h3>
+            <p>
+              New York City's Roosevelt Island Tramway helped bring aerial tramways back into the public
+              imagination as real commuter infrastructure, not just mountain novelty.
+            </p>
+            <p class="source-line">Source: Roosevelt Island Tramway overview</p>
+          </article>
+
+          <article class="timeline-card" id="milestone-2004" data-year="2004-2007">
+            <p class="timeline-year">2004-2007</p>
+            <h3>Modern cities rediscover cable transit</h3>
+            <p>
+              Medellin's Line K and Portland's Aerial Tram showed that cable-based transit still makes
+              sense where terrain is awkward, rights-of-way are tight, and experience matters too.
+            </p>
+            <p class="source-line">Source: Metro de Medellin; City of Portland</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="fun">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">The fun part</p>
+          <h2>Why tramways keep charming people</h2>
+          <p>
+            The history is cool, but the lasting appeal is emotional. Tramways solve a practical
+            problem in a way that gives riders a view, a story, and a little bit of drama.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <article class="info-card">
+            <h3>The reveal</h3>
+            <p>
+              You do not just arrive somewhere. You rise, you glide, and the landscape opens up in
+              stages. That makes even short trips feel memorable.
+            </p>
+          </article>
+          <article class="info-card">
+            <h3>The terrain story</h3>
+            <p>
+              Tramways make geography visible. They show exactly why the route exists: cliffs,
+              rivers, hillsides, glaciers, ports, or steep urban slopes.
+            </p>
+          </article>
+          <article class="info-card">
+            <h3>The engineering flex</h3>
+            <p>
+              Roads go around. Rail climbs carefully. Tramways just say, “We are going over that.”
+            </p>
+          </article>
+          <article class="info-card">
+            <h3>The shared memory</h3>
+            <p>
+              People talk about tramways afterward. That is not true of most transport systems, and it
+              is a big reason they become local landmarks.
+            </p>
+          </article>
+        </div>
+
+        <div class="oregon-callout">
+          <h3>Why this lands well in Central Oregon</h3>
+          <p>
+            Central Oregon already understands elevation, viewpoints, winter recreation, destination
+            rides, and terrain that shapes the experience. Tramways feel intuitive here because they
+            turn landscape from an obstacle into part of the attraction.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="today">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Then and now</p>
+          <h2>Three modern examples that make the point</h2>
+          <p>
+            These systems show how the same family of cable transport can serve commuters, connect
+            neighborhoods, and make short steep trips both practical and memorable.
+          </p>
+        </div>
+
+        <div class="example-grid">
+          <article class="example-card">
+            <p class="example-tag">New York City</p>
+            <h3>Roosevelt Island Tramway</h3>
+            <p>
+              A commuter tramway that started as a practical fix and stuck around because it worked —
+              and because people loved it.
+            </p>
+          </article>
+          <article class="example-card">
+            <p class="example-tag">Medellin</p>
+            <h3>Metrocable Line K</h3>
+            <p>
+              More urban gondola than tramway, but hugely important in showing that cable transit could
+              be integrated into city life in a serious way.
+            </p>
+          </article>
+          <article class="example-card">
+            <p class="example-tag">Oregon</p>
+            <h3>Portland Aerial Tram</h3>
+            <p>
+              A local reminder that cable transport is not frozen in history. It is still a smart way
+              to connect steep or constrained places.
+            </p>
+          </article>
+        </div>
+
+        <div class="takeaway-banner">
+          <strong>Bottom line:</strong> tramways survive because they solve hard geography in a way
+          people actually enjoy.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sources">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">For the curious</p>
+          <h2>Sources and further reading</h2>
+          <p>
+            This site is a lighter retelling of the research. If you want the full citations and
+            deeper notes, start with the local research file and presentation deck.
+          </p>
+        </div>
+
+        <div class="sources-grid">
+          <div class="sources-panel">
+            <h3>Local files in this repo</h3>
+            <ul class="source-list">
+              <li><a href="AERIAL_TRAMWAYS_RESEARCH.md">Full research write-up</a></li>
+              <li><a href="Aerial_Tramways_History_Presentation.pptx">Presentation deck</a></li>
+            </ul>
+          </div>
+          <div class="sources-panel">
+            <h3>Key web sources used</h3>
+            <ul class="source-list">
+              <li><a href="https://gameo.org/index.php?title=Wiebe,_Adam_(d._1653)">GAMEO: Adam Wybe</a></li>
+              <li><a href="https://www.hoistmagazine.com/news/historic-hoists/">Hoist: Historic hoists</a></li>
+              <li><a href="https://blogs.upm.es/museotorresquevedocaminos/transbordador/">Museo Torres Quevedo</a></li>
+              <li><a href="https://www.leitner.com/en/company/useful-information/evolution-of-ropeways/">LEITNER: ropeway evolution</a></li>
+              <li><a href="https://www.nps.gov/wrst/learn/historyculture/kennecott-mines-national-historic-landmark.htm">NPS: Kennecott</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Aerial_tramway">Wikipedia: aerial tramway</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Roosevelt_Island_Tramway">Wikipedia: Roosevelt Island Tramway</a></li>
+              <li><a href="https://www.metrodemedellin.gov.co/en/who-we-are/history">Metro de Medellin</a></li>
+              <li><a href="https://www.portland.gov/transportation/portland-aerial-tram">City of Portland: Aerial Tram</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-shell">
+      <p><strong>Tramway Story</strong> — built as a simple static site for quick sharing.</p>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
