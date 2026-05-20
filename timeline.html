@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tramway Timeline | Tramway Story</title>
+  <meta
+    name="description"
+    content="A quick timeline of aerial tramway milestones from 1644 to modern cities."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="index.html">Tramway Story</a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="what.html">What is it?</a>
+        <a href="timeline.html" aria-current="page">Timeline</a>
+        <a href="fun.html">Why fun?</a>
+        <a href="today.html">Today</a>
+        <a href="sources.html">Sources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">The big story</p>
+          <h2>A quick timeline of tramway history</h2>
+          <p>
+            Click a year to jump to the milestone. The story starts with construction and mining,
+            then shifts into passenger travel, tourism, and modern city life.
+          </p>
+        </div>
+
+        <div class="timeline-jumps" role="tablist" aria-label="Timeline milestones">
+          <button class="jump-chip active" data-target="milestone-1644" type="button">1644</button>
+          <button class="jump-chip" data-target="milestone-1872" type="button">1872</button>
+          <button class="jump-chip" data-target="milestone-1907" type="button">1907</button>
+          <button class="jump-chip" data-target="milestone-1908" type="button">1908</button>
+          <button class="jump-chip" data-target="milestone-1976" type="button">1976</button>
+          <button class="jump-chip" data-target="milestone-2004" type="button">2004-2007</button>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-card active" id="milestone-1644" data-year="1644">
+            <p class="timeline-year">1644</p>
+            <h3>Adam Wybe builds an early ropeway in Gdansk</h3>
+            <p>
+              The best-documented early example used a loop of rope and suspended buckets to move
+              soil for city fortifications. It is widely treated as the first operational aerial
+              ropeway of this recognizable type.
+            </p>
+            <p class="source-line">Source: GAMEO / Adam Wybe</p>
+          </article>
+
+          <article class="timeline-card" id="milestone-1872" data-year="1872">
+            <p class="timeline-year">1872</p>
+            <h3>Bleichert makes ropeways far more practical</h3>
+            <p>
+              Adolf Bleichert's bicable system separated carrying and hauling functions, which made
+              ropeways stronger, more scalable, and far better suited for serious industrial work.
+            </p>
+            <p class="source-line">Source: Hoist; Bleichert company history</p>
+          </article>
+
+          <article class="timeline-card" id="milestone-1907" data-year="1907">
+            <p class="timeline-year">1907</p>
+            <h3>Passenger tramways stop being a wild idea</h3>
+            <p>
+              Leonardo Torres Quevedo's Monte Ulia tramway in Spain is remembered as an early public
+              passenger milestone, with safety-conscious multi-cable engineering built into the design.
+            </p>
+            <p class="source-line">Source: Museo Torres Quevedo</p>
+          </article>
+
+          <article class="timeline-card" id="milestone-1908" data-year="1908">
+            <p class="timeline-year">1908</p>
+            <h3>Central Europe joins the passenger era</h3>
+            <p>
+              The Kohlernbahn in Bozen showed ropeways were moving beyond freight and into everyday
+              passenger use, helping launch the broader era of mountain sightseeing and resort travel.
+            </p>
+            <p class="source-line">Source: LEITNER ropeway history</p>
+          </article>
+
+          <article class="timeline-card" id="milestone-1976" data-year="1976">
+            <p class="timeline-year">1976</p>
+            <h3>Roosevelt Island proves an urban tramway can work</h3>
+            <p>
+              New York City's Roosevelt Island Tramway helped bring aerial tramways back into the public
+              imagination as real commuter infrastructure, not just mountain novelty.
+            </p>
+            <p class="source-line">Source: Roosevelt Island Tramway overview</p>
+          </article>
+
+          <article class="timeline-card" id="milestone-2004" data-year="2004-2007">
+            <p class="timeline-year">2004-2007</p>
+            <h3>Modern cities rediscover cable transit</h3>
+            <p>
+              Medellin's Line K and Portland's Aerial Tram showed that cable-based transit still makes
+              sense where terrain is awkward, rights-of-way are tight, and experience matters too.
+            </p>
+            <p class="source-line">Source: Metro de Medellin; City of Portland</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-shell">
+      <p><strong>Tramway Story</strong> — built as a simple static site for quick sharing.</p>
+      <a href="index.html">Home</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
