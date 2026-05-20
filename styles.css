@@ -86,11 +86,17 @@ img {
 
 .main-nav a:hover,
 .main-nav a:focus-visible,
+.main-nav a[aria-current="page"],
 .source-list a:hover,
 .source-list a:focus-visible,
 .site-footer a:hover,
 .site-footer a:focus-visible {
   color: var(--brand);
+}
+
+.main-nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
 }
 
 .hero {
@@ -420,6 +426,10 @@ img {
 .example-card,
 .sources-panel {
   padding: 1.35rem;
+}
+
+.example-card .button {
+  margin-top: 0.6rem;
 }
 
 .oregon-callout,
