@@ -42,3 +42,41 @@ const observer = new IntersectionObserver(
 );
 
 timelineCards.forEach((card) => observer.observe(card));
+
+// Dark mode toggle
+const themeToggle = document.getElementById("theme-toggle");
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+function getStoredTheme() {
+  return localStorage.getItem("theme");
+}
+
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  themeToggle.textContent = theme === "dark" ? "☀️" : "🌙";
+  themeToggle.setAttribute("aria-label", theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
+}
+
+function initTheme() {
+  const stored = getStoredTheme();
+  if (stored) {
+    applyTheme(stored);
+  } else {
+    applyTheme(prefersDark.matches ? "dark" : "light");
+  }
+}
+
+themeToggle.addEventListener("click", () => {
+  const current = document.documentElement.dataset.theme;
+  const next = current === "dark" ? "light" : "dark";
+  localStorage.setItem("theme", next);
+  applyTheme(next);
+});
+
+prefersDark.addEventListener("change", (e) => {
+  if (!getStoredTheme()) {
+    applyTheme(e.matches ? "dark" : "light");
+  }
+});
+
+initTheme();
